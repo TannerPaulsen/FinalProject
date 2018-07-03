@@ -50,8 +50,7 @@ def dot(vec01,vec02):
         for i in range(n):
             total += vec01[i]*vec02[i] #you take the += because it outputs the sum of the multiplication for all elements i
         return total
-    else:
-        return('Invalid Input')
+
 def scalarVecMulti(scalar,vec05):
     '''
     This function takes two inputs, scalar and vec05, then finds the length of vec05 since it is the length we need to multiply
@@ -59,9 +58,13 @@ def scalarVecMulti(scalar,vec05):
     This will then output the new vec05.
     '''
     n = len(vec05)
+    result = vec05
+    print(vec05)
     for i in range(n):
-        vec05[i] = scalar * vec05[i]  # here the scalar is multiplied to the vector through each element i in the vectors range.
-    return vec05
+        print(result[i])
+        print(scalar)
+        result[i] = scalar * result[i]  # here the scalar is multiplied to the vector through each element i in the vectors range.
+    return result
 
 def vecSubtract(vec03,vec04):
     '''
@@ -102,7 +105,7 @@ def qrFact(mat01):
     m = len(mat01)
     resultQ = [[0]*(m) for i in range(n)]
     resultR = [[0]*(n) for i in range(n)]
-    V = matrix
+    V = A
     for i in range(n):
         resultR[i][i] = twoNorm(V[i])
         resultQ[i] = normalize(V[i])
@@ -115,20 +118,37 @@ def qrFact(mat01):
     return [resultQ,resultR]
 
 
+def transMatrix(Q,y):
+    n = len(Q[0])
+    m = len(Q)
+    for i in range(n):
+        for j in range(m):
+            transposeQ [i][j] += Q[i][j]
+            Qy = transposeQ[i][j] * y
+
+    return Qy
+
 
 
 
 
 def backSub(R,b):
+    b = transMatrix(Q, y)
     k = len(b) - 1
-    c = [0]*len(b)
+    c = [[0]*len(b) for i in range(b)]
     c[k] = b[k]/R[k][k]
-    for i in Reversed(range(len(b)))
+    for i in Reversed(range(len(b))):
         c[i]= b[i]
-        for j in range(i+1,len(b))
+        for j in range(i+1,len(b)):
             c[i] = c[i] - c[j]*R[j][i]
             c[i] = c[i]/R[i][i]
     return C
 
-matrix = [[1, 2, 1], [0, 1, 1], [1, 0, 1]]
-V = [1, 0, 1]
+x = [.55,.60,.65,.70,.75,.80,.85,.9,.95,1]
+y = [1.102,1.099,1.017,1.111,1.117,1.152,1.265,1.380,1.575,1.857]
+
+A = [[1,1,1,1,1,1,1,1,1,1],[x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],x[9]],[x[0]**2,x[1]**2,x[2]**2,x[3]**2,x[4]**2,x[5]**2,x[6]**2,x[7]**2,x[8]**2,x[9]**2],[x[0]**3,x[1]**3,x[2]**3,x[3]**3,x[4]**3,x[5]**3,x[6]**3,x[7]**3,x[8]**3,x[9]**3]]
+
+
+print(A)
+print(qrFact(A))
