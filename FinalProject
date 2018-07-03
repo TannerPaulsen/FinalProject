@@ -119,11 +119,13 @@ def qrFact(mat01):
 
 
 def transMatrix(Q,y):
+    l = qrFact(Q)
+    h = qrFact(Q)[0]
     n = len(Q[0])
     m = len(Q)
     for i in range(n):
         for j in range(m):
-            transposeQ [i][j] += Q[i][j]
+            transposeQ [i][j] += h[i][j]
             Qy = transposeQ[i][j] * y
 
     return Qy
@@ -133,7 +135,7 @@ def transMatrix(Q,y):
 
 
 def backSub(R,b):
-    b = transMatrix(Q, y)
+    b = transMatrix(R, y)
     k = len(b) - 1
     c = [[0]*len(b) for i in range(b)]
     c[k] = b[k]/R[k][k]
@@ -152,3 +154,5 @@ A = [[1,1,1,1,1,1,1,1,1,1],[x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],x[9]],[
 
 print(A)
 print(qrFact(A))
+print()
+print(backSub(A,y))
