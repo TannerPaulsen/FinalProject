@@ -195,7 +195,7 @@ def qrFact(mat01):
     for i in range(n):
 
         resultR[i][i] = twoNorm(V[i]) #taking the sum of the V[i] so that we
-        resultQ[i] = normalize(V[i]) #normalizing the column V[i]
+        resultQ[i] = normalize(V[i]) #normalizing the column V[i]  however I kept getting a huge growing number in this, instead of how it was in Quiz 4, and I can't figure out why, I get bugs with everything I try.
 
 
         for j in range(i+1,n):
